@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------
 # AUTHOR: Suhuan Pan
-# FILENAME: main.py
+# FILENAME: CS4210-SVM/ML-HW3/main.py
 # SPECIFICATION: build multiple SVM classifiers based on the training data,
 # compute its accuracy based on the testing data,
 # then find out the best performance score and output its corresponding hyper parameter value
@@ -9,11 +9,11 @@
 #-----------------------------------------------------------*/
 
 #importing some Python libraries
-
 from sklearn import svm
 import pandas as pd # import python interpreter package pandas
 import csv
 import numpy as np
+
 # defining the hyper_parameter values
 c = [1, 5, 10, 100]
 degree = [1, 2, 3]
@@ -24,16 +24,13 @@ decision_function_shape = ["ovo", "ovr"]
 # reading the training data by using Pandas library
 df = pd.read_csv('optdigits.tra', sep=',', header=None)
 
-
 # getting the first 64 fields to create the
 # feature training data and convert them to NumPy array
 X_training = np.array(df.values)[:,:64]
 
-
 # getting the last field to create the class
 # training data and convert them to NumPy array
 y_training = np.array(df.values)[:,-1]
-
 
 # reading the training data by using Pandas library
 df = pd.read_csv('optdigits.tes', sep=',', header=None)
@@ -80,8 +77,7 @@ for i1 in range(len(c)):
                 # end the for i5 loop
 
                 accuracy = (matchCount / len(y_predict))
-                # print("Accuracy = ", accuracy)
-
+                
                 # check if the calculated accuracy is higher than the previously one
                 # calculated. If so, update the highest accuracy and print it together
                 # with the SVM hyper_parameters.
@@ -92,11 +88,10 @@ for i1 in range(len(c)):
                     h3 = i3
                     h4 = i4
 
-                bestScore = round(bestScore, 2)
+                bestScore = round(bestScore, 2) 
                 print("Highest Score =", bestScore)
                 print("Parameters: c =", c[h1], ", degree =", degree[h2], ", kernel =", kernel[h3],
                       ", decision_function_shape ='", decision_function_shape[h4], "'")
-
 
             # end the for i4 loop
     # end the for i1 loop
